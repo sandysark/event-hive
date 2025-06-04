@@ -1,9 +1,11 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Search } from "lucide-react";
-import EventCard from "../components/eventcard";
+import EventCard from "../components/EventCard";
+import { useState } from "react";
 
 export default function Home() {
+const [events, setEvents] = useState([]);
     return (
         <>
             <Navbar />

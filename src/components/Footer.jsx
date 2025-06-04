@@ -17,7 +17,7 @@ function Footer() {
             </div>
             <hr />
             <div className="flex flex-row justify-center gap-10">
-                <div className="flex flex-row justify-evenly gap-4">
+                <div className="flex flex-row justify-evenly py-4 absolute left-1 gap-4">
                     <button>English</button>
                     <button>French</button>
                     <button>Hindi</button>
@@ -27,7 +27,7 @@ function Footer() {
                     <Instagram />
                     <Facebook />
                 </div>
-                <div className="flex flex-row justify-end py-4 gap-10">
+                <div className="flex flex-row justify-end py-4  absolute right-1 gap-10">
                     <p>Non Copyrighted© 2025 Upload by EventHive</p>
                 </div>
 

@@ -2,10 +2,26 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Search } from "lucide-react";
 import EventCard from "../components/EventCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home() {
-const [events, setEvents] = useState([]);
+    // Declare state variable in React
+    const [events, setEvents] = useState([]);
+    //  Define a function to fetch events from API
+    const getEvents = () => {
+        axios.get('https://fakestoreapi.com/products')
+            .then(response => {
+                setEvents(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+
+            })
+    }
+    //  Run fectcher based on side-effects
+    useEffect(getEvents, []);
+
     return (
         <>
             <Navbar />
@@ -30,30 +46,36 @@ const [events, setEvents] = useState([]);
                     </div>
                     <div className="flex flex-col w-[30%]">
                         <label className="text-white" htmlFor="when">When</label>
-                        <input type="datetime-local"name="when" id="when" className="bg-white p-1.5 rounded-md"/>
-                         </div>
-                       
-                    
+                        <input type="datetime-local" name="when" id="when" className="bg-white p-1.5 rounded-md" />
+                    </div>
+
+
                     <div className=" text-white size-[60px] flex flex-row justify-center items-center  bg-primary rounded-md ">
-                        <Search/>
+                        <Search />
 
                     </div>
-                </form>
-            </section >
-            <section className="mt-20">
-            <div>
-                <h1>
-                    <span>UPCOMING</span>
-                    <span>EVENTS</span>
-                </h1>
+                      </form>
+                         </section >
+                         <section className="mt-20">
+                          <div>
+                            <h1>
+                           <span>UPCOMING</span>
+                            <span>EVENTS</span>
+                         </h1>
 
-            </div >
-            <div className=" grid grid-cols-3 gap-5">
-                {[1, 2, 3, 4, 5, 6].map(n => <EventCard key={n} />)}
+                         </div >
+                      <div className=" grid grid-cols-3 gap-5">
+                    {events.map(item=> {
+                        return(
+                            <EventCard 
+                            key={item.id}
+                             event={item}/>
+                            );
+                            })}
 
-            </div>
+                </div>
             </section>
-            
+
             <Footer />
         </>
     );
